@@ -2,7 +2,9 @@ const express = require('express')
 const router = express.Router()
 const { getCards, setCard, updateCard, deleteCard } = require('../controllers/cardControllers')
 
-router.route('/').get(getCards).post(setCard)
-router.route('/:id').delete(deleteCard).put(updateCard)
+const { protect } = require('../middleware/authMiddleware')
+
+router.route('/').get(protect, getCards).post(protect, setCard)
+router.route('/:id').delete(protect, deleteCard).put(protect, updateCard)
 
 module.exports = router

@@ -1,12 +1,13 @@
 const asyncHandler = require('express-async-handler')
 
 const Card = require('../models/cardModel')
+const User = require('../models/userModel')
 
 // @desc get all cards associated with the user
 // @route GET /api/cards
 // @access Private
 const getCards = asyncHandler(async (req, res) => {
-    const cards = await Card.find()
+    const cards = await Card.find({ user: req.user.id })
     res.json(cards)
 })
 
@@ -14,13 +15,33 @@ const getCards = asyncHandler(async (req, res) => {
 // @route POST /api/cards
 // @access Private
 const setCard = asyncHandler(async (req, res) => {
-    if (!req.body.text) {
+    if (!req.body.text
+        || !req.body.name
+        || !req.body.attribute
+        || !req.body.type
+        || !req.body.level
+        || !req.body.monsterType
+        || !req.body.extraType
+        || !req.body.isPend
+        || !req.body.att
+        || !req.body.def
+        ) {
         res.status(400)
-        throw new Error('Text field required')
+        throw new Error('One or more of the following fields are empty. (text, name, attribute, type, level, monsterType, extraType, isPend, att, def')
     }
 
     const card = await Card.create({
         text: req.body.text,
+        name: req.body.name,
+        attribute: req.body.attribute,
+        type: req.body.type,
+        level: req.body.level,
+        monsterType: req.body.monsterType,
+        extraType: req.body.extraType,
+        isPend: req.body.isPend,
+        att: req.body.att,
+        def: req.body.def,
+        user: req.user.id,
     })
     res.json(card)
 })
@@ -34,6 +55,20 @@ const updateCard = asyncHandler(async (req, res) => {
     if (!card) {
         res.status(400)
         throw new Error('Card not found')
+    }
+
+    const user = await User.findById(req.user.id)
+
+    if (!user)
+    {
+        res.status(401)
+        throw new Error('User not found.')
+    }
+
+    if (global.user.toString() !== user.id)
+    {
+        res.status(401)
+        throw new Error('User does not match.')
     }
 
     const updatedCard = await Card.findByIdAndUpdate(req.params.id, req.body, {
@@ -51,6 +86,20 @@ const deleteCard = asyncHandler(async (req, res) => {
     if (!card) {
         res.status(400)
         throw new Error('Card not found')
+    }
+
+    const user = await User.findById(req.user.id)
+
+    if (!user)
+    {
+        res.status(401)
+        throw new Error('User not found.')
+    }
+
+    if (global.user.toString() !== user.id)
+    {
+        res.status(401)
+        throw new Error('User does not match.')
     }
 
     await card.deleteOne()
