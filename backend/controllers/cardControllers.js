@@ -15,6 +15,7 @@ const getCards = asyncHandler(async (req, res) => {
 // @route POST /api/cards
 // @access Private
 const setCard = asyncHandler(async (req, res) => {
+    //if request does not contain required fields in body, then bad request.
     if (!req.body.text
         || !req.body.name
         || !req.body.attribute
@@ -30,6 +31,7 @@ const setCard = asyncHandler(async (req, res) => {
         throw new Error('One or more of the following fields are empty. (text, name, attribute, type, level, monsterType, extraType, isPend, att, def')
     }
 
+    //json for a card from given fields
     const card = await Card.create({
         text: req.body.text,
         name: req.body.name,
@@ -43,6 +45,7 @@ const setCard = asyncHandler(async (req, res) => {
         def: req.body.def,
         user: req.user.id,
     })
+    //put in response this json object
     res.json(card)
 })
 
@@ -50,26 +53,32 @@ const setCard = asyncHandler(async (req, res) => {
 // @route PUT /api/cards
 // @access Private
 const updateCard = asyncHandler(async (req, res) => {
+    //id is given in params section
     const card = await Card.findById(req.params.id)
 
+    //no card id in cluster
     if (!card) {
         res.status(400)
         throw new Error('Card not found')
     }
 
+    //find user from logged in user
     const user = await User.findById(req.user.id)
 
+    //no user id in cluster
     if (!user)
     {
         res.status(401)
         throw new Error('User not found.')
     }
 
-    if (global.user.toString() !== user.id)
+    //wrong user is requesting
+    if (card.user.id.toString() !== user.id)
     {
         res.status(401)
         throw new Error('User does not match.')
     }
+
 
     const updatedCard = await Card.findByIdAndUpdate(req.params.id, req.body, {
         new: true
