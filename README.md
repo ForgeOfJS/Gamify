@@ -77,4 +77,4 @@ Deployment is coming soon!
     npm run dev
     ```
 
-Thank you for checking out my repo! At this point will continue development until deployed through possibly Microsoft Azure
+Thank you for checking out my repo! At this point will continue development until deployed through possibly Microsoft Azure :^)
