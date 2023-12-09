@@ -40,6 +40,7 @@ Deployment is coming soon!
 - Install all npm packages in frontend and backend
 - MongoDB server running
 - Create your .env file in the root dir with the following format:
+
     ```
     NODE_ENV = development
     PORT = 5000
