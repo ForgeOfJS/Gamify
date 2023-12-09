@@ -12,6 +12,12 @@ This repository contains the source code for a web application built with the ME
 - **Responsive Design:** The application is designed to work seamlessly across various devices.
 - **Card Trading** Duelists can trade their custom cards with other Duelists, sending requests and accepting/rejecting requests for trades.
 
+![The Dashboard of the Web App.](/images/Dashboard.png "Current Dashboard Page.")
+
+![The Login page of the Web App.](/images/Login.png "Current Login Page.")
+
+![The Register page of the Web App.](/images/Register.png "Current Register Page.")
+
 ## Technologies Used
 
 - **Frontend:**
