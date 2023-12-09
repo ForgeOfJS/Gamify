@@ -37,10 +37,17 @@ Deployment is coming soon!
 ### Prerequisites
 
 - Node.js and npm installed
-- Install all npm packages in frontend and backend
 - MongoDB server running
-- Create your .env file in the root dir with the following format:
 
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ForgeOfJS/Card-App.git
+   ```
+
+2. Create your .env file with the following format:
     ```
     NODE_ENV = development
     PORT = 5000
@@ -48,10 +55,26 @@ Deployment is coming soon!
     JWT_SECRET = <jwt_secret_string>
     ```
 
-### Installation
+3. Install all packages in backend, frontend and root directories:
+    ```
+    cd backend
+    npm install
+    cd ..
+    ```
 
-1. Clone the repository:
+    ```
+    cd frontend
+    npm install
+    cd ..
+    ```
 
-   ```bash
-   git clone https://github.com/your-username/yugioh-card-creator.git
-   cd yugioh-card-creator
+    ```
+    npm install
+    ```
+
+4. Run the following command to run both front end and back end using concurrently
+    ```
+    npm run dev
+    ```
+
+Thank you for checking out my repo! At this point will continue development until deployed through possibly Microsoft Azure
