@@ -9,7 +9,11 @@ connectDB()
 
 const app = express()
 
+//PROD: Set up port properly
+
 app.use(express.json())
+//PROD: possible changes needed
+//app.use(express.static('./client/build'))
 app.use(express.urlencoded({extended: false}))
 
 app.use('/api/cards', require('./routes/cardRoutes'))

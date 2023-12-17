@@ -22,7 +22,7 @@ This repository contains the source code for a web application built with the ME
 ## Technologies Used
 
 - **Frontend:**
-  - React.js
+  - React
   - Redux for state management
   - Axios for handling API requests
 
