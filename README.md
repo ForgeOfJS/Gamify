@@ -6,7 +6,7 @@ This repository contains the source code for a web application built with the ME
 
 ## Features
 
-- **User Authentication:** Users can create accounts, log in, and log out securely.
+- **User Authentication:** Duelists can create accounts, log in, and log out securely.
 - **Card Creation:** Duelists can design custom Yu-Gi-Oh! cards, specifying attributes like card name, type, attack, defense, etc.
 - **Card Management:** Duelists can view, edit, and delete their created cards.
 - **Responsive Design:** The application is designed to work seamlessly across various devices.
