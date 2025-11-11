@@ -44,7 +44,7 @@ Deployment is coming soon!
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/ForgeOfJS/Card-App.git
+   git clone https://github.com/ForgeOfJS/Gamify.git
    ```
 
 2. Create your .env file with the following format:
